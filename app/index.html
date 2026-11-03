@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>公众号排版工坊 · WeChat Typesetting Studio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="topbar">
+    <h1>📝 公众号排版工坊</h1>
+    <p>粘贴 Markdown → 生成可直接粘贴进公众号编辑器的合规 HTML（离线可用）· 可选 AI 精修</p>
+  </div>
+
+  <div class="toolbar">
+    <div class="field">
+      <label>主题</label>
+      <select id="theme">
+        <option value="accent">accent（蓝·清新）</option>
+        <option value="default">default（灰·经典）</option>
+        <option value="warm">warm（橙·暖色）</option>
+        <option value="minimal">minimal（极简）</option>
+      </select>
+    </div>
+    <label class="switch"><input type="checkbox" id="toc"> 自动目录</label>
+    <button class="btn primary" id="convertBtn">⚡ 一键转换</button>
+    <button class="btn" id="copyBtn">📋 复制 HTML</button>
+    <button class="btn" id="downloadBtn">⬇️ 下载 HTML</button>
+    <button class="btn" id="sampleBtn">📄 载入示例</button>
+  </div>
+
+  <div class="workspace">
+    <div class="card">
+      <h2>① 输入 Markdown <span id="srcCount" style="font-weight:400;color:var(--muted);font-size:12px;"></span></h2>
+      <div class="body">
+        <textarea id="src" placeholder="在此粘贴或输入 Markdown…"></textarea>
+      </div>
+    </div>
+    <div class="card">
+      <h2>② 公众号预览 <span style="font-weight:400;color:var(--muted);font-size:12px;">粘贴到 mp.weixin.qq.com 即可</span></h2>
+      <div class="body">
+        <div class="preview-wrap"><iframe id="preview"></iframe></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="report">
+    <div class="report-card">
+      <h3>③ 合规体检报告</h3>
+      <div class="stat-row" id="stats"></div>
+      <ul class="checks" id="checks"></ul>
+    </div>
+  </div>
+
+  <div class="ai">
+    <h3>④ AI 精修（🔵 进阶集成 · 可选）</h3>
+    <p class="hint">
+      密钥只保存在<strong>你自己的浏览器</strong>（localStorage），只发往官方 API，绝不经任何中转服务器。
+      没有密钥也能完整使用上面的离线转换功能。
+    </p>
+    <div class="ai-grid">
+      <div class="field">
+        <label>AI 服务商</label>
+        <select id="aiProvider">
+          <option value="claude">Claude（Anthropic）</option>
+          <option value="openai">OpenAI（GPT）</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>API Key</label>
+        <input type="password" id="aiKey" placeholder="sk-... 或 paste 你的 key" autocomplete="off">
+      </div>
+    </div>
+    <div class="ai-actions">
+      <button class="btn" id="aiRefineBtn">✨ 用 AI 重写并优化排版</button>
+      <button class="btn" id="aiSummaryBtn">📌 生成导语摘要</button>
+      <button class="btn" id="aiClearKey">🧹 清除本地密钥</button>
+    </div>
+    <div class="ai-status" id="aiStatus"></div>
+  </div>
+
+  <footer>公众号排版工坊 · 由 wechat-publisher（C4B）包装而成的 Web App · 离线转换 + 浏览器端 AI 增强</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
